@@ -18,42 +18,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 
-    <!-- Create child card -->
-    <div class="card mb-4">
-        <div class="card-header fw-semibold">Add a Child Account</div>
-        <div class="card-body">
-            <form th:action="@{/parent/children}" method="post" th:object="${createChildForm}">
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                <div class="row g-3">
-                    <div class="col-md-3">
-                        <label class="form-label">Username *</label>
-                        <input type="text" class="form-control" th:field="*{username}"
-                               th:classappend="${#fields.hasErrors('username')} ? 'is-invalid'"/>
-                        <div class="invalid-feedback" th:errors="*{username}"></div>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Display Name</label>
-                        <input type="text" class="form-control" th:field="*{displayName}"
-                               th:classappend="${#fields.hasErrors('displayName')} ? 'is-invalid'"/>
-                        <div class="invalid-feedback" th:errors="*{displayName}"></div>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Password *</label>
-                        <input type="password" class="form-control" th:field="*{password}"
-                               th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'"/>
-                        <div class="invalid-feedback" th:errors="*{password}"></div>
-                    </div>
-                    <div class="col-md-1 d-flex align-items-end">
-                        <button type="submit" class="btn btn-success w-100">Add</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <!-- Children accounts -->
     <div th:if="${children.isEmpty()}" class="text-center text-muted py-5">
-        No children yet. Add one above.
+        No children yet. Add one below.
     </div>
 
     <div th:each="child : ${children}" class="card mb-4">
@@ -212,6 +179,39 @@
             <div class="card-body text-muted" th:if="${account == null}">
                 No account set up for this child yet.
             </div>
+        </div>
+    </div>
+
+    <!-- Create child card -->
+    <div class="card mb-4">
+        <div class="card-header fw-semibold">Add a Child Account</div>
+        <div class="card-body">
+            <form th:action="@{/parent/children}" method="post" th:object="${createChildForm}">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Username *</label>
+                        <input type="text" class="form-control" th:field="*{username}"
+                               th:classappend="${#fields.hasErrors('username')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback" th:errors="*{username}"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Display Name</label>
+                        <input type="text" class="form-control" th:field="*{displayName}"
+                               th:classappend="${#fields.hasErrors('displayName')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback" th:errors="*{displayName}"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Password *</label>
+                        <input type="password" class="form-control" th:field="*{password}"
+                               th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback" th:errors="*{password}"></div>
+                    </div>
+                    <div class="col-md-1 d-flex align-items-end">
+                        <button type="submit" class="btn btn-success w-100">Add</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
