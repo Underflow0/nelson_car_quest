@@ -51,7 +51,7 @@ public class StatementPdfService {
         Font normalFont = new Font(Font.HELVETICA, 11, Font.NORMAL);
         Font grayFont   = new Font(Font.HELVETICA, 9, Font.NORMAL, COLOR_GRAY);
 
-        Paragraph title = new Paragraph("KidBank Savings Statement", titleFont);
+        Paragraph title = new Paragraph("Nelson Car Quest Savings Statement", titleFont);
         title.setAlignment(Element.ALIGN_CENTER);
         doc.add(title);
 
