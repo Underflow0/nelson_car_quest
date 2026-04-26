@@ -24,6 +24,7 @@ class ParentControllerSecurityTest {
 
     @MockBean UserService userService;
     @MockBean AccountService accountService;
+    @MockBean StatementPdfService statementPdfService;
     @MockBean org.nelson.kidbank.repository.UserRepository userRepository;
 
     @Test

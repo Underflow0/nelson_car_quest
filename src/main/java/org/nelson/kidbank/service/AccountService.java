@@ -128,6 +128,24 @@ public class AccountService {
         return transactionRepository.findByAccountIdOrderByCreatedAtDesc(accountId);
     }
 
+    public List<Transaction> getTransactionsForStatement(Long accountId, Long actorParentId,
+                                                          LocalDateTime from, LocalDateTime to) {
+        SavingsAccount account = getAccountForParent(accountId, actorParentId);
+        return transactionRepository.findByAccountIdAndCreatedAtBetweenOrderByCreatedAtAsc(
+                account.getId(), from, to);
+    }
+
+    public List<Transaction> getTransactionsForChildStatement(Long accountId, Long childUserId,
+                                                               LocalDateTime from, LocalDateTime to) {
+        SavingsAccount account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new IllegalArgumentException("Account not found."));
+        if (!account.getChildUserId().equals(childUserId)) {
+            throw new AccessDeniedException("Access denied.");
+        }
+        return transactionRepository.findByAccountIdAndCreatedAtBetweenOrderByCreatedAtAsc(
+                accountId, from, to);
+    }
+
     public Optional<SavingsAccount> findByChildUserId(Long childUserId) {
         return accountRepository.findByChildUserId(childUserId);
     }

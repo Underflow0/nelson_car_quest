@@ -1,5 +1,6 @@
 # Derby database files
 data/
+derby.log
 
 # Maven build output
 target/
@@ -11,7 +12,10 @@ target/
 .project
 .settings/
 *.class
+.vscode/
 
 # OS files
 .DS_Store
 Thumbs.db
+
+
